@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "JobApply AI",
+  "version": "0.1.0",
+  "description": "Human-in-the-loop job matching and application assistance.",
+  "permissions": ["storage", "activeTab", "notifications"],
+  "host_permissions": ["http://localhost:8080/*"],
+  "action": {"default_popup": "index.html"},
+  "background": {"service_worker": "background.js", "type": "module"},
+  "content_scripts": [{"matches": ["https://*/*"], "js": ["content.js"], "run_at": "document_idle"}]
+}
