@@ -58,3 +58,7 @@ This is the production-oriented foundation for Phase 1. See [docs/ROADMAP.md](do
 The extension now supports Gemini PDF parsing, editable profiles and preferences, multi-resume metadata, current-page job analysis, duplicate detection, opt-in notifications, review-first form filling, local application tracking, and data deletion. The backend includes structured Gemini endpoints, input/rate limits, an authentication hook, PostgreSQL migrations, and security documentation.
 
 Before public release, complete the remaining gates in `docs/ROADMAP.md`, especially tenant-scoped authentication/persistence and external security testing.
+
+## Production configuration
+
+The backend now requires PostgreSQL and uses tenant-scoped JWT authentication. In production, set `APP_ENV=production`, a secrets-manager-backed `JWT_SECRET`, `GEMINI_API_KEY`, and the exact published extension origin in `ALLOWED_ORIGINS`. Build the extension with `VITE_API_BASE_URL` set to the TLS API URL. Follow `docs/PRODUCTION_CHECKLIST.md` before publishing.

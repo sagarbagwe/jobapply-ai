@@ -6,7 +6,9 @@ services:
       GEMINI_API_KEY: ${GEMINI_API_KEY}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
       APP_ENV: ${APP_ENV:-development}
-      API_AUTH_TOKEN: ${API_AUTH_TOKEN:-}
+      JWT_SECRET: ${JWT_SECRET:-development-only-secret-change-before-production}
+      ACCESS_TOKEN_TTL_MINUTES: ${ACCESS_TOKEN_TTL_MINUTES:-15}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-chrome-extension://development}
       DATABASE_URL: postgres://jobapply:jobapply@postgres:5432/jobapply?sslmode=disable
       REDIS_ADDR: redis:6379
     ports: ["8080:8080"]

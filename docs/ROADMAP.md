@@ -1,25 +1,24 @@
-# Roadmap and release gates
+# Roadmap and release status
 
-## Implemented in the beta foundation
-- [x] MV3 extension with editable profile and preferences
-- [x] PDF resume parsing through Gemini with no raw-PDF persistence
-- [x] Multi-resume metadata
-- [x] JSON-LD and heuristic job detection
-- [x] Explainable local and Gemini matching
-- [x] Review-first semantic form filling
-- [x] Local application tracker and duplicate detection
-- [x] Saved seen-job IDs and opt-in match notifications
-- [x] Gemini provider abstraction endpoints
-- [x] PostgreSQL production schema and Docker initialization
-- [x] Request limits, rate limiting, API authentication hook, security headers
-- [x] Privacy and threat-model documentation
+## Implemented
+- [x] MV3 extension, editable profile/preferences, PDF resume parsing, multi-resume metadata
+- [x] Structured job detection, explainable matching, duplicate detection, notifications
+- [x] Review-first form filling and manual final submission boundary
+- [x] Local tracker plus authenticated PostgreSQL tracker synchronization
+- [x] User registration/login with short-lived signed JWT access tokens
+- [x] Tenant-scoped profile and application APIs
+- [x] Server-side data export and confirmed account deletion
+- [x] Gemini provider isolation, strict structured outputs, no raw-PDF persistence
+- [x] Rate/body limits, exact-origin CORS, security/no-store headers
+- [x] PostgreSQL schema, Docker deployment, CI race tests, audit, and release packaging
+- [x] Privacy design, threat model, security policy, and deployment checklist
 
-## Required before public production release
-- [ ] Replace development bearer token with user OAuth/JWT and tenant-scoped APIs
-- [ ] Wire tracker CRUD to PostgreSQL with row-level authorization
-- [ ] Add server-side export/deletion jobs and encryption key management
-- [ ] Run ATS adapter compatibility tests against permitted targets
-- [ ] Add Playwright E2E, accessibility, load, and restore tests
-- [ ] Complete Chrome Web Store privacy disclosures and external security review
+## Operational release gates
+These require the production operator or external reviewers rather than additional repository code:
+- [ ] Provision the TLS API hostname and secrets manager
+- [ ] Set the final Chrome extension ID in `ALLOWED_ORIGINS` and store manifest
+- [ ] Configure encrypted PostgreSQL, backups, restore drills, monitoring, and spending alerts
+- [ ] Run permitted ATS compatibility testing and independent security/privacy review
+- [ ] Complete Chrome Web Store disclosures and review
 
-The repository is a testable beta, not authorization to automate a site that prohibits automation.
+No release may bypass CAPTCHA, authentication, rate limits, anti-bot controls, or the user's final Submit action.
