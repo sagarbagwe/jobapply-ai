@@ -52,3 +52,9 @@ Resume-derived data remains local in the MVP unless the user explicitly invokes 
 ## Status
 
 This is the production-oriented foundation for Phase 1. See [docs/ROADMAP.md](docs/ROADMAP.md).
+
+## Beta capabilities
+
+The extension now supports Gemini PDF parsing, editable profiles and preferences, multi-resume metadata, current-page job analysis, duplicate detection, opt-in notifications, review-first form filling, local application tracking, and data deletion. The backend includes structured Gemini endpoints, input/rate limits, an authentication hook, PostgreSQL migrations, and security documentation.
+
+Before public release, complete the remaining gates in `docs/ROADMAP.md`, especially tenant-scoped authentication/persistence and external security testing.

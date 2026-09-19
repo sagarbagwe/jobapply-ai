@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
-      input: { popup: resolve(__dirname, 'index.html'), background: resolve(__dirname, 'src/background/index.ts'), content: resolve(__dirname, 'src/content/index.ts') },
+      input: { popup: resolve(import.meta.dirname, 'index.html'), background: resolve(import.meta.dirname, 'src/background/index.ts'), content: resolve(import.meta.dirname, 'src/content/index.ts') },
       output: { entryFileNames: '[name].js' }
     }
   }

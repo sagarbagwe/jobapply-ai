@@ -5,6 +5,8 @@ services:
       HTTP_ADDR: :8080
       GEMINI_API_KEY: ${GEMINI_API_KEY}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+      APP_ENV: ${APP_ENV:-development}
+      API_AUTH_TOKEN: ${API_AUTH_TOKEN:-}
       DATABASE_URL: postgres://jobapply:jobapply@postgres:5432/jobapply?sslmode=disable
       REDIS_ADDR: redis:6379
     ports: ["8080:8080"]
@@ -15,7 +17,9 @@ services:
       POSTGRES_USER: jobapply
       POSTGRES_PASSWORD: jobapply
       POSTGRES_DB: jobapply
-    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/migrations:/docker-entrypoint-initdb.d:ro
   redis:
     image: redis:7-alpine
 volumes:

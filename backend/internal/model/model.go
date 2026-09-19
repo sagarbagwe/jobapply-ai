@@ -1,8 +1,15 @@
 package model
 
-type Profile struct { FullName string `json:"full_name"`; Skills []string `json:"skills"`; YearsExperience float64 `json:"years_experience"`; Locations []string `json:"preferred_locations"` }
-type Job struct { Company string `json:"company"`; Title string `json:"title"`; Location string `json:"location"`; Description string `json:"description"`; URL string `json:"url"` }
+type Profile struct {
+	FullName string `json:"full_name"`; Email string `json:"email"`; Phone string `json:"phone"`; Location string `json:"location"`; YearsExperience float64 `json:"years_experience"`; Skills []string `json:"skills"`; Education string `json:"education,omitempty"`; Degree string `json:"degree,omitempty"`; GraduationYear string `json:"graduation_year,omitempty"`; Companies []string `json:"companies,omitempty"`; JobTitles []string `json:"job_titles,omitempty"`; Projects []string `json:"projects,omitempty"`; Certifications []string `json:"certifications,omitempty"`; CurrentCompany string `json:"current_company,omitempty"`; CurrentCTC string `json:"current_ctc,omitempty"`; ExpectedCTC string `json:"expected_ctc,omitempty"`; NoticePeriod string `json:"notice_period,omitempty"`; PreferredLocations []string `json:"preferred_locations,omitempty"`; WorkAuthorization string `json:"work_authorization,omitempty"`
+}
+type Job struct { Company string `json:"company"`; Title string `json:"title"`; Location string `json:"location"`; Description string `json:"description"`; URL string `json:"url"`; Skills []string `json:"skills,omitempty"` }
 type MatchRequest struct { Profile Profile `json:"profile"`; Job Job `json:"job"` }
-type MatchResult struct { MatchScore int `json:"match_score"`; MatchedSkills []string `json:"matched_skills"`; MissingSkills []string `json:"missing_skills"`; ExperienceMatch bool `json:"experience_match"`; LocationMatch bool `json:"location_match"`; Recommendation string `json:"recommendation"`; Rationale []string `json:"rationale"` }
+type MatchResult struct { MatchScore int `json:"match_score"`; Category string `json:"category"`; MatchedSkills []string `json:"matched_skills"`; MissingSkills []string `json:"missing_skills"`; ExperienceMatch bool `json:"experience_match"`; LocationMatch bool `json:"location_match"`; Recommendation string `json:"recommendation"`; Reasons []string `json:"reasons"` }
 type AnswerRequest struct { Profile Profile `json:"profile"`; Job Job `json:"job"`; Question string `json:"question"` }
 type AnswerResult struct { Answer string `json:"answer"`; RequiresReview bool `json:"requires_review"` }
+type ParseResumeRequest struct { Name string `json:"name"`; MIMEType string `json:"mime_type"`; Data string `json:"data"` }
+type ParseResumeResult struct { Profile Profile `json:"profile"`; Skills []string `json:"skills"`; MissingFields []string `json:"missing_fields"` }
+type ResumeSummary struct { ID string `json:"id"`; Name string `json:"name"`; Profile Profile `json:"profile"`; Tags []string `json:"tags"` }
+type RecommendRequest struct { Job Job `json:"job"`; Resumes []ResumeSummary `json:"resumes"` }
+type RecommendResult struct { ResumeID string `json:"resume_id"`; Reason string `json:"reason"` }

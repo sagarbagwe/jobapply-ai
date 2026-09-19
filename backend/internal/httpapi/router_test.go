@@ -1,0 +1,4 @@
+package httpapi
+import("context";"net/http";"net/http/httptest";"testing";"github.com/sagarbagwe/jobapply-ai/backend/internal/model")
+type fake struct{};func(fake)Match(context.Context,model.MatchRequest)(model.MatchResult,error){return model.MatchResult{MatchScore:80},nil};func(fake)Answer(context.Context,model.AnswerRequest)(model.AnswerResult,error){return model.AnswerResult{},nil};func(fake)ParseResume(context.Context,model.ParseResumeRequest)(model.ParseResumeResult,error){return model.ParseResumeResult{},nil};func(fake)RecommendResume(context.Context,model.RecommendRequest)(model.RecommendResult,error){return model.RecommendResult{},nil}
+func TestHealth(t *testing.T){w:=httptest.NewRecorder();req:=httptest.NewRequest(http.MethodGet,"/healthz",nil);Router(fake{}).ServeHTTP(w,req);if w.Code!=http.StatusOK{t.Fatalf("status=%d",w.Code)}}
